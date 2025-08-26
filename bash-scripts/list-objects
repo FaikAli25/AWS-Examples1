@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# List all objects in a bucket
+
+BUCKET_NAME=$1
+
+if [ -z "$BUCKET_NAME" ]; then
+  echo "❌ Usage: ./list-objects <bucket-name>"
+  exit 1
+fi
+
+aws s3api list-objects   --bucket $BUCKET_NAME   --query "Contents[].Key"

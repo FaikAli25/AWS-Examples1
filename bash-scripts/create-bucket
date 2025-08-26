@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Create an S3 bucket
+
+BUCKET_NAME="my-temp-bucket-faik-$(date +%Y%m%d%H%M%S)"
+
+aws s3api create-bucket   --bucket $BUCKET_NAME   --region us-east-1
+
+echo "✅ Bucket created: $BUCKET_NAME"

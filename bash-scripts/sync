@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Sync local folder with S3 bucket
+
+BUCKET_NAME=$1
+FOLDER_PATH=$2
+
+if [ -z "$BUCKET_NAME" ] || [ -z "$FOLDER_PATH" ]; then
+  echo "❌ Usage: ./sync <bucket-name> <folder-path>"
+  exit 1
+fi
+
+aws s3 sync $FOLDER_PATH s3://$BUCKET_NAME
+echo "✅ Synced $FOLDER_PATH → s3://$BUCKET_NAME"

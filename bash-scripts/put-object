@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Upload a file to S3
+
+BUCKET_NAME=$1
+FILE_PATH=$2
+
+if [ -z "$BUCKET_NAME" ] || [ -z "$FILE_PATH" ]; then
+  echo "❌ Usage: ./put-object <bucket-name> <file-path>"
+  exit 1
+fi
+
+aws s3api put-object   --bucket $BUCKET_NAME   --key $(basename $FILE_PATH)   --body $FILE_PATH
+
+echo "✅ File uploaded: $FILE_PATH to bucket: $BUCKET_NAME"

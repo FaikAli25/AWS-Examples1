@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Delete an S3 bucket
+
+BUCKET_NAME=$1
+
+if [ -z "$BUCKET_NAME" ]; then
+  echo "❌ Usage: ./delete-bucket <bucket-name>"
+  exit 1
+fi
+
+aws s3 rb s3://$BUCKET_NAME --force
+echo "🗑️  Bucket deleted: $BUCKET_NAME"
